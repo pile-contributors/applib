@@ -21,6 +21,9 @@ macro    (applibInit
         "applib.h")
     set(APPLIB_SOURCES
         "applib.cc")
+    set(APPLIB_QT_MODS
+        "Core"
+        "Widgets")
 
     pileSetSources(
         "${APPLIB_INIT_NAME}"
@@ -32,7 +35,7 @@ macro    (applibInit
         "0;0;1;d"
         "ON"
         "${ref_cnt_use_mode}"
-        ""
+        "Translate"
         "category1"
         "tag1;tag2")
 

@@ -12,7 +12,7 @@
 
 #include <applib/applib-config.h>
 
-#if 0
+#if 1
 #    define APPLIB_DEBUGM printf
 #else
 #    define APPLIB_DEBUGM black_hole
