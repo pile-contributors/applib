@@ -381,3 +381,36 @@ bool AppLib::startTranslation (QString & locale)
 }
 /* ========================================================================= */
 
+
+/* ------------------------------------------------------------------------- */
+/**
+ *
+ * Use it in your initialization code:
+ * @code
+ * qInstallMessageHandler (AppLib::echoQtMessages);
+ * @endcode
+ *
+ */
+void AppLib::echoQtMessages (
+        QtMsgType type, const QMessageLogContext &/*context*/,
+        const QString &msg)
+{
+    switch (type) {
+    case QtDebugMsg:
+        printf("Q T   D E B U G: %s\n", TMP_A(msg));
+        break;
+    case QtWarningMsg:
+        printf("Q T   W A R N I N G: %s\n", TMP_A(msg));
+        break;
+    case QtCriticalMsg:
+        printf("Q T   E R R O R: %s\n", TMP_A(msg));
+        break;
+    case QtFatalMsg:
+        printf("Q T   F A T A L ERROR: %s\n", TMP_A(msg));
+        exit(-1);
+    default:
+        printf("Q T: %s\n", TMP_A(msg));
+    }
+}
+/* ========================================================================= */
+

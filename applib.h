@@ -75,6 +75,12 @@ public:
     static bool
     startGui ();
 
+    //! The main gui.
+    static QWidget *
+    mainGui () {
+        return singleton_->mw_;
+    }
+
     //! The unique instance of the class.
     static AppLib *
     uniqAppLib ();
@@ -89,7 +95,12 @@ public:
     static BuildType
     buildType ();
 
-
+    //! Handler function ofr Qt messages.
+    static void
+    echoQtMessages (
+            QtMsgType type,
+            const QMessageLogContext & context,
+            const QString &msg);
 
 protected:
 
