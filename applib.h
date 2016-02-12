@@ -14,7 +14,7 @@
 #include <QObject>
 #include <QDateTime>
 
-//! brief description
+//! Base class for application's main library.
 class APPLIB_EXPORT AppLib : public QObject {
     Q_OBJECT
 public:

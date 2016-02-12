@@ -11,6 +11,7 @@
 #define GUARD_APPLIB_PRIVATE_H_INCLUDE
 
 #include <applib/applib-config.h>
+#include "applib-util.h"
 
 #if 1
 #    define APPLIB_DEBUGM printf
@@ -19,13 +20,13 @@
 #endif
 
 #if 0
-#    define APPLIB_TRACE_ENTRY printf("APPLIB ENTRY %s in %s[%d]\n", __func__, __FILE__, __LINE__)
+#    define APPLIB_TRACE_ENTRY APPLIB_ENTRY("APPLIB")
 #else
 #    define APPLIB_TRACE_ENTRY
 #endif
 
 #if 0
-#    define APPLIB_TRACE_EXIT printf("APPLIB EXIT %s in %s[%d]\n", __func__, __FILE__, __LINE__)
+#    define APPLIB_TRACE_EXIT APPLIB_EXIT("APPLIB")
 #else
 #    define APPLIB_TRACE_EXIT
 #endif

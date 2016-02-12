@@ -89,7 +89,7 @@ public:
 /**
  * @class AppLib
  *
- * Detailed description.
+ * .
  */
 
 AppLib * AppLib::singleton_ = NULL;

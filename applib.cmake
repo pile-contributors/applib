@@ -18,6 +18,7 @@ macro    (applibInit
 
     # compose the list of headers and sources
     set(APPLIB_HEADERS
+        "applib-util.h"
         "applib.h")
     set(APPLIB_SOURCES
         "applib.cc")
