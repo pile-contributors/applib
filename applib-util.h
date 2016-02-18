@@ -140,4 +140,12 @@
 #define APPLIB_EXIT(module) printf("-------{ %s EXIT %s in %s[%d] }-----\n", module, __func__, __FILE__, __LINE__)
 
 
+/**
+ * @def l1s
+ * @brief Shorter name for QLatin1String.
+ * @internal
+ */
+#define l1s QLatin1String
+
+
 #endif // GUARD_APPLIB_UTIL_H_INCLUDE

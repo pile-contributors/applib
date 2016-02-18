@@ -182,7 +182,8 @@ bool AppLib::changeState (AppLib::State value)
     switch (state_) {
     case InitialState: {
         if (value != InitializingState) {
-            APPLIB_DEBUGM("Only valid state from Initial is Initializing\n");
+            APPLIB_DEBUGM("The only valid state while in Initial is Initializing "
+                          "(%d)\n", value);
             break;
         }
         APPLIB_DEBUGM("APPLIB: ==========================================\n");
