@@ -211,11 +211,11 @@ bool AppLib::changeState (AppLib::State value)
     }
     case InitializingState: {
         if (
-                (value != RunningState) ||
-                (value != RunningGuiState) ||
+                (value != RunningState) &&
+                (value != RunningGuiState) &&
                 (value != TerminatingState)) {
             APPLIB_DEBUGM("Application can go from Initializing "
-                          "only to Running or Terminating\n");
+                          "only to Running or Terminating (%d)\n", value);
             break;
         }
         TimeInterval ti (app_start_moment_);
@@ -232,10 +232,11 @@ bool AppLib::changeState (AppLib::State value)
 
     case RunningState: {
         if (
-                (value != RunningGuiState) ||
+                (value != RunningGuiState) &&
                 (value != TerminatingState)) {
             APPLIB_DEBUGM("Application can go from Running "
-                          "only to Running with GUI or Terminating\n");
+                          "only to Running with GUI or Terminating (%d)\n",
+                          value);
             break;
         }
 
@@ -256,10 +257,11 @@ bool AppLib::changeState (AppLib::State value)
 
     case RunningGuiState: {
         if (
-                (value != RunningState) ||
+                (value != RunningState) &&
                 (value != TerminatingState)) {
             APPLIB_DEBUGM("Application can go from Running "
-                          "only to Running without GUI or Terminating\n");
+                          "only to Running without GUI or Terminating (%d)\n",
+                          value);
             break;
         }
 
@@ -281,7 +283,7 @@ bool AppLib::changeState (AppLib::State value)
     case TerminatingState: {
         if (value != TerminatedState) {
             APPLIB_DEBUGM("Application can go from Terminating "
-                          "only to Terminated\n");
+                          "only to Terminated (%d)\n", value);
             break;
         }
 
