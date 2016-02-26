@@ -24,7 +24,8 @@ macro    (applibInit
         "applib.cc")
     set(APPLIB_QT_MODS
         "Core"
-        "Widgets")
+        "Widgets"
+        "Gui")
 
     pileSetSources(
         "${APPLIB_INIT_NAME}"

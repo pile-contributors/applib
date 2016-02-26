@@ -51,13 +51,13 @@ public:
     toString (QString pattern = QString ()) const {
         if (pattern.isEmpty()) {
             pattern = QCoreApplication::translate (
-                        "%1 hours, %2 minutes and %3 seconds",
-                        "AppLib");
+                        "AppLib",
+                        "%1 hours, %2 minutes and %3 seconds");
         }
-        return QString ()
+        return pattern
                 .arg (hours_run_)
-                .arg (min_in_hour_, 10, 2, QChar('0'))
-                .arg (secs_in_min_, 10, 2, QChar('0'));
+                .arg (min_in_hour_, 2, 10, QChar('0'))
+                .arg (secs_in_min_, 2, 10, QChar('0'));
     }
 
     static QString
@@ -187,21 +187,21 @@ bool AppLib::changeState (AppLib::State value)
             break;
         }
         APPLIB_DEBUGM("APPLIB: ==========================================\n");
-        APPLIB_DEBUGM("APPLIB: lib %s is being initialized\n", appUserName ());
-        APPLIB_DEBUGM("APPLIB: %s\n", app_start_moment_.toString ().toLatin1 ().constData ());
+        APPLIB_DEBUGM("APPLIB: lib %s is being initialized\n", TMP_A(appUserName ()));
+        APPLIB_DEBUGM("APPLIB: %s\n", TMP_A(app_start_moment_.toString ()));
         APPLIB_DEBUGM("APPLIB: ==========================================\n");
 
         switch (buildType ()) {
         case ReleaseWithDebugBuild: {
             qsrand (QDateTime::currentDateTime().toTime_t());
-            APPLIB_DEBUG ("LIBMAKEINST: Release version with debug information\n");
+            APPLIB_DEBUGM ("LIBMAKEINST: Release version with debug information\n");
             break; }
         case DebugBuild: {
             qsrand (QDateTime::currentDateTime().toTime_t());
-            APPLIB_DEBUG ("LIBMAKEINST: Debug version\n");
+            APPLIB_DEBUGM ("LIBMAKEINST: Debug version\n");
             break; }
         case ReleaseBuild: {
-            APPLIB_DEBUG ("LIBMAKEINST: Release version\n");
+            APPLIB_DEBUGM ("LIBMAKEINST: Release version\n");
             break; }
         }
 
@@ -291,7 +291,7 @@ bool AppLib::changeState (AppLib::State value)
         APPLIB_DEBUGM("APPLIB: ==========================================\n");
         APPLIB_DEBUGM("APPLIB: %s\n", TMP_A(ti.start ().toString ()));
         APPLIB_DEBUGM("APPLIB: lib %s has run %s\n",
-                      TMP_A(appUserName ()), ti.toString ());
+                      TMP_A(appUserName ()), TMP_A(ti.toString ()));
         APPLIB_DEBUGM("APPLIB: ==========================================\n");
         emit libEnded();
 
@@ -336,7 +336,7 @@ bool AppLib::startTranslation (QString & locale)
     // loadable by QSettings (metadata.ini) and an icon.png file.
     QString s_error;
     if (!Translate::init (&s_error)) {
-        APPLIB_DEBUGM(TMP_A(s_error));
+        APPLIB_DEBUGM("%s\n", TMP_A(s_error));
         return false;
     }
     if (Translate::count () <= 0) {
