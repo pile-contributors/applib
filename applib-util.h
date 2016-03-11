@@ -34,6 +34,16 @@
 
 
 /**
+ * @def QSTRINGIFY
+ * @brief Convert symbol to string at compile time and wrap in a light string class.
+ * @internal
+ */
+#ifndef QSTRINGIFY
+#   define QSTRINGIFY(s) QLatin1String (STRINGIFY(s))
+#endif
+
+
+/**
  * @def NULLIFY
  * @brief If the pointer is non-null it deletes it and set it to NULL.
  * @internal
@@ -122,6 +132,17 @@
         printf("\nASSERT Failed: " STRINGIFY(a) "\n"); \
         printf("%s[%d]: %s\n\n",__FILE__, __LINE__, __func__); \
         BREAKPOINT; }
+
+
+/**
+ * @def APPLIB_FAILPOINT
+ * @brief Assert coupled with a break point; prints file, line number, function.
+ * @internal
+ */
+#define APPLIB_FAILPOINT(msg) \
+        printf("\nASSERT Failed: " msg "\n"); \
+        printf("%s[%d]: %s\n\n",__FILE__, __LINE__, __func__); \
+        BREAKPOINT;
 
 
 /**
