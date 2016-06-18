@@ -142,6 +142,8 @@ bool AppLib::startGui ()
     Q_ASSERT(singleton_ != NULL);
     singleton_->changeState (RunningGuiState);
     singleton_->mw_ = singleton_->_startGui ();
+    if (singleton_->mw_ == NULL)
+        return NULL;
     singleton_->connect (singleton_->mw_, SIGNAL(guiEnding ()),
              singleton_, SIGNAL(guiEnding ()));
     singleton_->connect (singleton_->mw_, SIGNAL(guiEnded ()),
