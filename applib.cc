@@ -375,14 +375,14 @@ bool AppLib::startTranslation (QString & locale)
     // order is important when installing translators
     translator = Translate::qtTranslator (lang);
     if (translator == NULL) {
-        APPLIB_DEBUGM("No qt translation for locale %s", TMP_A(locale));
+        APPLIB_DEBUGM("No qt translation for locale %s\n", TMP_A(locale));
     } else {
         qApp->installTranslator (translator);
     }
 
     translator = Translate::translator (lang);
     if (translator == NULL) {
-        APPLIB_DEBUGM("Failed to load existing locale %s", TMP_A(locale));
+        APPLIB_DEBUGM("Failed to load existing locale %s\n", TMP_A(locale));
         return false;
     }
     qApp->installTranslator (translator);
