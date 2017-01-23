@@ -13,7 +13,7 @@
 #include <applib/applib-config.h>
 #include "applib-util.h"
 
-#if 1
+#if 0
 #    define APPLIB_DEBUGM printf
 #else
 #    define APPLIB_DEBUGM black_hole
