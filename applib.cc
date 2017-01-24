@@ -102,7 +102,8 @@ AppLib::AppLib() : QObject (),
     app_start_moment_ (QDateTime::currentDateTime ()),
     gui_mode_ (false),
     mw_ (NULL),
-    state_ (InitialState)
+    state_ (InitialState),
+    fqmsg_ (NoFilter)
 {
     APPLIB_TRACE_ENTRY;
     Q_ASSERT (singleton_ == NULL);
@@ -410,15 +411,23 @@ void AppLib::echoQtMessages (
 {
     switch (type) {
     case QtDebugMsg:
+        if (uniqAppLib ()->isQtMsgFilterSet (ExcludeDebug))
+            break;
         printf("Q T   D E B U G: %s\n", TMP_A(msg));
         break;
     case QtWarningMsg:
+        if (uniqAppLib ()->isQtMsgFilterSet (ExcludeWarning))
+            break;
         printf("Q T   W A R N I N G: %s\n", TMP_A(msg));
         break;
     case QtCriticalMsg:
+        if (uniqAppLib ()->isQtMsgFilterSet (ExcludeError))
+            break;
         printf("Q T   E R R O R: %s\n", TMP_A(msg));
         break;
     case QtFatalMsg:
+        if (uniqAppLib ()->isQtMsgFilterSet (ExcludeFatal))
+            break;
         printf("Q T   F A T A L ERROR: %s\n", TMP_A(msg));
         exit(-1);
     default:

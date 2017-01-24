@@ -37,6 +37,18 @@ public:
         ReleaseWithDebugBuild
     };
 
+    //! Allows filtering the text stream comming from Qt.
+    enum FilterQtMsg {
+        NoFilter    = 0x00000001,
+
+        ExcludeError = 0x00000002,
+        ExcludeWarning = 0x00000004,
+        ExcludeDebug = 0x00000008,
+        ExcludeFatal = 0x00000010,
+        ExcludeAll = ExcludeError | ExcludeWarning | ExcludeDebug | ExcludeFatal,
+
+    };
+
 protected:
 
     //! Default constructor.
@@ -101,6 +113,20 @@ public:
             QtMsgType type,
             const QMessageLogContext & context,
             const QString &msg);
+
+    //! Tell if a flag or combination of flags are set.
+    bool
+    isQtMsgFilterSet (
+            int flag) {
+        return ((fqmsg_ & flag) == flag);
+    }
+
+    //! Set a flag.
+    void
+    setQtMsgFilter (
+            int flag) {
+        fqmsg_ = (FilterQtMsg)(fqmsg_ | flag);
+    }
 
 protected:
 
@@ -182,6 +208,7 @@ private:
     bool gui_mode_; /**< is this a GUI application or not */
     QWidget * mw_; /**< main GUI object */
     State state_; /**< the state of the application */
+    FilterQtMsg fqmsg_; /**< how to filter the messages from Qt */
 
     static AppLib * singleton_;
 };
