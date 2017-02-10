@@ -107,7 +107,7 @@ public:
     static BuildType
     buildType ();
 
-    //! Handler function ofr Qt messages.
+    //! Handler function for Qt messages.
     static void
     echoQtMessages (
             QtMsgType type,
