@@ -167,7 +167,8 @@ protected:
     //! Initializes the translation system.
     bool
     startTranslation (
-            QString & locale);
+            QString & locale,
+            const char * env_var_path=NULL);
 
 signals:
 

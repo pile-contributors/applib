@@ -337,16 +337,19 @@ bool AppLib::changeState (AppLib::State value)
  * }
  * @endcode
  *
- * @param locale (in/out) the name of the locale to use; save the resulted value to settings
+ * @param locale (in/out) The name of the locale to use;
+ *      save the resulted value to settings.
+ * @param env_var_path (in) The name of the environment variable that
+ *      overrides path search mechanism for translations.
  * @return true if we were able to load the language
  */
-bool AppLib::startTranslation (QString & locale)
+bool AppLib::startTranslation (QString & locale, const char * env_var_path)
 {
     // each language has its own directory that contains
     // a compiled translation file (.qm), a metadata file
     // loadable by QSettings (metadata.ini) and an icon.png file.
     QString s_error;
-    if (!Translate::init (&s_error)) {
+    if (!Translate::init (env_var_path, &s_error)) {
         APPLIB_DEBUGM("%s\n", TMP_A(s_error));
         return false;
     }
